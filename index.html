@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewprot" content="width=device-width, initial-scale=1.0"/>
+        <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+        <title>dddd</title>
+        <style type="text/css">
+            svg{
+              border: 1px solid black;
+              margin: 100px;
+            }
+            path{
+              stroke: #aaa;
+              stroke-width:20;
+              fill: transparent;
+              stroke-linecap: round;
+            }
+            #cover{
+              stroke: #f00;
+              /*stroke-dasharray: 100px;*/
+              /*stroke-dashoffset: 100%;*/
+             transition: stroke-dashoffset 2s;
+             display: none;
+            }
+            input{
+              position: absolute;
+              left: 0;
+              right: 0;
+              top: 50px;
+              width: 100px;
+              margin: auto;
+            }
+        </style>
+    </head>
+    <body>
+         <svg width="500" height="500">
+           <path d="M200 300 A100 100 0 1 1 300 300"></path>
+           <path id="cover" d="M200 300 A100 100 0 1 1 300 300"></path>
+         </svg>
+         
+         <input type="text" name="inp" id="inp" value="" />
+        <script type="text/javascript">
+          var inp = document.getElementById("inp");
+            // 获取长度
+            
+            var cover = document.getElementById("cover");
+            var pathLength = cover.getTotalLength();
+            cover.style.strokeDasharray = pathLength;
+            cover.style.strokeDashoffset = pathLength + "px";
+            cover.style.display = "block";
+            
+            inp.onchange = function () {
+                var percent = (100 - Number(this.value)) / 100;
+                cover.style.strokeDashoffset = percent * pathLength + "px";
+            }
+            
+            
+            
+        </script>
+    </body>
+</html>
